@@ -67,7 +67,7 @@ udp.port == 53 || tcp.port == 53
 ```
 ---
 
-### 🧩 5. Investigate Services
+### 🧩 Investigate Services
 
 Each open port was researched to understand its typical usage and potential exposure in a production or test environment.
 
@@ -80,7 +80,7 @@ Each open port was researched to understand its typical usage and potential expo
 
 ---
 
-### 🔐 6. Risk Assessment
+### 🔐 Risk Assessment
 
 Risk evaluation of the discovered open ports was performed to identify potential attack vectors and propose defensive actions.
 
