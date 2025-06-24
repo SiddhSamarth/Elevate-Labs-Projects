@@ -1,6 +1,6 @@
 # 🛡️ Phishing Email Analysis Report 
 
-## 📌 Overview
+##  Overview
 
 This report presents a comprehensive manual investigation of a suspected phishing email named `sample1.eml`. The analysis was carried out using **Sublime Text Editor** on **Kali Linux 2025.2**, focusing on standard phishing indicators across email headers, content, and structure. The sample impersonates **Chase Bank** and attempts to deceive the recipient using urgency and domain obfuscation.
 
