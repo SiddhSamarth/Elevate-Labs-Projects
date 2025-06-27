@@ -28,7 +28,7 @@ A **firewall** is a system that monitors and filters incoming/outgoing network t
 
 ## ⚙️ Firewall Configuration & Testing
 
-### ✅ Step 1: Install & Enable UFW
+### Step 1: Install & Enable UFW
 ```bash
 sudo apt update
 sudo apt install ufw -y
@@ -55,7 +55,7 @@ sudo ufw deny 23
 ![image](https://github.com/user-attachments/assets/06bbc551-6faf-471e-bf1a-66c821e23e80)
 
 
-# ✅ Step 3 – Allow Secure SSH Access (Port 22)
+# Step 3 – Allow Secure SSH Access (Port 22)
 
 ---
 
@@ -88,7 +88,7 @@ sudo ufw allow 22
 
 
 
-# ✅ Step 4 – View Active UFW Rules (Firewall Status)
+# Step 4 – View Active UFW Rules (Firewall Status)
 
 ---
 
@@ -127,12 +127,12 @@ sudo ufw status numbered
 ![image](https://github.com/user-attachments/assets/12e043af-0373-41cc-bc95-f648282ad1a0)
 
 
-# ✅ Step 5 – Testing the Firewall Rules (Telnet Block & SSH Allow)
+# Step 5 – Testing the Firewall Rules (Telnet Block & SSH Allow)
 
 ---
 
-## 🎯 Objective:
-To verify that the firewall rules configured in previous steps are working correctly:
+## Objective:
+To verify that the firewall rules configured in the previous steps are working correctly:
 - **Telnet (port 23)** should be **blocked**.
 - **SSH (port 22)** should be **allowed**.
 
@@ -141,7 +141,7 @@ To verify that the firewall rules configured in previous steps are working corre
 ## 📖 Theoretical Background:
 
 ### 🔹 Telnet (Port 23)
-Telnet is an insecure, legacy protocol used for remote terminal access. Blocking Telnet ensures that unauthorized and unencrypted access attempts are rejected.
+Telnet is an insecure, legacy protocol used for remote terminal access. Blocking Telnet ensures that unauthorised and unencrypted access attempts are rejected.
 
 ### 🔹 SSH (Port 22)
 SSH is a secure protocol that allows encrypted remote access. Allowing this port ensures secure connectivity for administrative purposes.
@@ -152,8 +152,51 @@ Proper testing of these ports verifies that UFW rules are enforced and functioni
 
 ## 🧪 Test 1: Blocked Telnet (Port 23)
 
-### 💻 Command:
+### Command:
 ```bash
 telnet 127.0.0.1 23
 ```
+# Step 6 – Cleanup and Conclusion
+
+---
+
+## 🎯 Objective:
+To restore the firewall to its original or cleaner state after testing, by removing temporary test rules (e.g., the Telnet block) and concluding the task with a reflection on what was learned.
+
+---
+
+## 🧹 Optional Cleanup
+
+After confirming that your firewall rules work correctly, it's a good practice to either remove specific test rules or reset the firewall to its default state.
+
+---
+
+### 🔸 Delete Telnet Block Rule (Port 23)
+
+If you want to remove just the Telnet block:
+
+```bash
+sudo ufw delete deny 23
+```
+
+# ✅ Final Thoughts
+
+- ✅ Enabled the firewall
+- ✅ Applied rule-based traffic filtering
+- ✅ Blocked insecure ports (Telnet)
+- ✅ Allowed secure services (SSH)
+- ✅ Verified rule behavior through hands-on testing
+- ✅ Optionally cleaned up the firewall configuration
+
+---
+
+## 🧠 Key Learnings
+
+| Concept                | Summary                                                             |
+|------------------------|---------------------------------------------------------------------|
+| Host-based Firewall    | UFW provides simple CLI control over iptables                      |
+| Port-based Filtering   | Traffic can be allowed/denied based on port or service             |
+| Secure Access          | Only secure and required ports should be left open                 |
+| Testing & Verification | Essential to confirm that firewall behavior matches intent         |
+| System Hardening       | Firewalls are a core layer of modern cybersecurity defense         |
 
