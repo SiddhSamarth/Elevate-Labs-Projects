@@ -179,7 +179,7 @@ If you want to remove just the Telnet block:
 sudo ufw delete deny 23
 ```
 
-# ✅ Final Thoughts
+# Final Thoughts
 
 - ✅ Enabled the firewall
 - ✅ Applied rule-based traffic filtering
@@ -199,4 +199,37 @@ sudo ufw delete deny 23
 | Secure Access          | Only secure and required ports should be left open                 |
 | Testing & Verification | Essential to confirm that firewall behavior matches intent         |
 | System Hardening       | Firewalls are a core layer of modern cybersecurity defense         |
+
+---
+
+# 📖How Firewalls Filter Network Traffic (Summary)
+## 🔥 What Does a Firewall Do?
+
+A firewall acts as a **gatekeeper** between your device and the network. It uses defined rules to determine whether to **allow or deny traffic** based on several criteria:
+
+- **Port Numbers** – e.g., `22` for SSH, `23` for Telnet  
+- **IP Addresses** – Source and Destination IPs  
+- **Protocol Type** – TCP, UDP, ICMP  
+- **Traffic Direction** – Incoming or Outgoing  
+
+---
+
+## 🔄 Traffic Flow Logic (UFW)
+
+- By default, **UFW denies all incoming traffic** unless explicitly allowed.
+- When a network packet reaches your system, **UFW checks the rules from top to bottom**.
+- The **first matching rule** is applied — no further rules are checked for that packet.
+- This **top-down rule evaluation** ensures predictable and secure behavior.
+
+---
+
+## 🔐 Real-World Impact
+
+Using a properly configured firewall like UFW:
+
+- 🚫 **Prevents unauthorised access** (e.g., port scans, Telnet exploits)  
+- 🛡️ **Reduces your system's attack surface**  
+- 🔒 **Enforces the principle of least privilege** — only essential services are accessible  
+
+---
 
