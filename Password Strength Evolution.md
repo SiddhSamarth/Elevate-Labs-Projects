@@ -1,4 +1,4 @@
-# 🔐 Cybersecurity Internship – Task 6
+# 🔐 Password Strength Evolution
 
 ## 🎯 Objective
 The goal of this task is to gain a deep understanding of what makes a password strong, create multiple passwords with varying complexity, test them using online tools, analyze the results, and summarize the best practices and password attack methods.
@@ -49,6 +49,7 @@ P5=$(tr -dc 'A-Za-z0-9!@#$%^&*()_+-=' </dev/urandom | head -c 20)
 
 ---
 
+
 ### 🔹 Step 2: Evaluate Password Strength
 The next step involves evaluating the effectiveness of each generated password using password strength testers. These tools analyze aspects like entropy, character diversity, and known weaknesses.
 
@@ -94,6 +95,7 @@ After reviewing the tools' feedback, we extracted meaningful insights that highl
 
 ---
 
+
 ### 🔹 Step 4: Password Attack Methods – Theoretical Concepts
 
 Understanding how attackers crack passwords helps in forming defensive strategies.
@@ -118,9 +120,10 @@ Understanding how attackers crack passwords helps in forming defensive strategie
 - Common in phishing emails, fake login pages, and phone scams.
 - Defense: Educate users, verify links, and never share passwords.
 
-🖼️ **[Insert Infographic Showing Types of Password Attacks and How to Prevent Them]**
+
 
 ---
+
 
 ### 🔹 Step 5: Best Practices for Password Creation
 
@@ -142,4 +145,3 @@ Creating secure passwords requires following a few core principles. These ensure
   - Combines your password with a second factor like OTP, biometrics, or hardware token.
   - Significantly improves account security even if the password is compromised.
 
-🖼️ **[Insert Screenshot of MFA Setup in an Application like Google, GitHub, or Email Provider]**
