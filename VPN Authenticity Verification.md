@@ -1,4 +1,4 @@
-# 🔐 Task 8 – VPN Setup and Privacy Report
+# 🔐 VPN Setup and Privacy Report
 
 ---
 
