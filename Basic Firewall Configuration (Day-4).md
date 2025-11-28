@@ -1,11 +1,11 @@
 # Basic Firewall Configuration using UFW on Kali Linux
 
-## 🎯 Objective
+##  Objective
 Configure and test basic firewall rules using **UFW (Uncomplicated Firewall)** on Kali Linux. The goal is to block unsafe ports like **Telnet (23)**, allow secure services like **SSH (22)**, and verify the rules through hands-on testing.
 
 ---
 
-## 🧠 Theoretical Knowledge
+##  Theoretical Knowledge
 
 A **firewall** is a system that monitors and filters incoming/outgoing network traffic based on predefined security rules. UFW is a host-based firewall that provides a simple command-line interface to manage complex `iptables` under the hood.
 
@@ -26,7 +26,7 @@ A **firewall** is a system that monitors and filters incoming/outgoing network t
 
 ---
 
-## ⚙️ Firewall Configuration & Testing
+## Firewall Configuration & Testing
 
 ### Step 1: Install & Enable UFW
 ```bash
@@ -38,9 +38,9 @@ sudo ufw enable
 
 
 
-## 🔒 Step 2: Block Insecure Telnet Port (Port 23)
+##  Step 2: Block Insecure Telnet Port (Port 23)
 
-### 💡 Theoretical Background:
+###  Theoretical Background:
 **Telnet** is a legacy protocol that operates on **port 23** and allows users to remotely access and manage devices. However, it transmits data in **plain text**, including sensitive login credentials — making it highly insecure and vulnerable to interception.
 
 **Why block it?**
@@ -80,7 +80,7 @@ By default, UFW denies all incoming connections. To allow remote administration 
 
 ---
 
-## 💻 Command to Allow SSH:
+## Command to Allow SSH:
 ```bash
 sudo ufw allow 22
 ```
@@ -92,12 +92,12 @@ sudo ufw allow 22
 
 ---
 
-## 📖 Objective:
+## Objective:
 To list all active firewall rules applied via **UFW (Uncomplicated Firewall)** in order to verify that the correct security policies are in place.
 
 ---
 
-## 🔐 Theoretical Background:
+## Theoretical Background:
 
 After applying firewall rules, it is essential to **audit** and **verify** them. UFW provides a simple way to list all current rules, including:
 
@@ -110,7 +110,7 @@ These rule numbers are important for **managing and deleting** specific rules la
 
 ---
 
-## 💡 Explanation:
+##  Explanation:
 
 UFW applies rules in the order they're added. By using `ufw status numbered`, you:
 
@@ -120,7 +120,7 @@ UFW applies rules in the order they're added. By using `ufw status numbered`, yo
 
 ---
 
-## 💻 Command to List Firewall Rules:
+## Command to List Firewall Rules:
 ```bash
 sudo ufw status numbered
 ```
@@ -150,7 +150,7 @@ Proper testing of these ports verifies that UFW rules are enforced and functioni
 
 ---
 
-## 🧪 Test 1: Blocked Telnet (Port 23)
+##  Test 1: Blocked Telnet (Port 23)
 
 ### Command:
 ```bash
@@ -160,18 +160,18 @@ telnet 127.0.0.1 23
 
 ---
 
-## 🎯 Objective:
+## Objective:
 To restore the firewall to its original or cleaner state after testing, by removing temporary test rules (e.g., the Telnet block) and concluding the task with a reflection on what was learned.
 
 ---
 
-## 🧹 Optional Cleanup
+## Optional Cleanup
 
 After confirming that your firewall rules work correctly, it's a good practice to either remove specific test rules or reset the firewall to its default state.
 
 ---
 
-### 🔸 Delete Telnet Block Rule (Port 23)
+###  Delete Telnet Block Rule (Port 23)
 
 If you want to remove just the Telnet block:
 
@@ -181,12 +181,12 @@ sudo ufw delete deny 23
 
 # Final Thoughts
 
-- ✅ Enabled the firewall
-- ✅ Applied rule-based traffic filtering
-- ✅ Blocked insecure ports (Telnet)
-- ✅ Allowed secure services (SSH)
-- ✅ Verified rule behavior through hands-on testing
-- ✅ Optionally cleaned up the firewall configuration
+- Enabled the firewall
+- Applied rule-based traffic filtering
+- Blocked insecure ports (Telnet)
+- Allowed secure services (SSH)
+- Verified rule behaviour through hands-on testing
+- Optionally cleaned up the firewall configuration
 
 ---
 
