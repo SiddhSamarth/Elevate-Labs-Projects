@@ -30,7 +30,9 @@ chmod u+x script.sh                 # Adds execute permission for the file owner
 chmod go-w config.conf              # Removes write permission from group and others
 sudo chown user:group file.txt      # Changes ownership of a file to a specific user/group
 ```
+### Code-Output
 <img width="1058" height="836" alt="image" src="https://github.com/user-attachments/assets/0f64e690-cff9-49a7-909d-637f7a27f870" />
+
 # **Task 3: Understand Administrator vs Standard User Privileges**
 
 ## **Explanation**
@@ -49,6 +51,7 @@ sudo su                             # Switches to the root account (administrato
 sudo <command>                      # Executes a single command with elevated (root) privileges
 sudo usermod -aG sudo <username>    # Adds a user to the sudo group to grant administrative rights
 ```
+### Code-Output
 <img width="1058" height="836" alt="image" src="https://github.com/user-attachments/assets/e57e5d71-1c84-4b4e-b397-fac55dc1ee3d" />
 
 # **Task 4: Enable Firewall (UFW in Linux)**
@@ -70,6 +73,7 @@ sudo ufw allow 80/tcp               # Allows HTTP traffic (port 80)
 sudo ufw allow 443/tcp              # Allows HTTPS traffic (port 443)
 sudo ufw status verbose             # Displays firewall status and active rules in detail
 ```
+### Code-Output
 <img width="1058" height="572" alt="image" src="https://github.com/user-attachments/assets/84cc7203-114f-41f8-86f9-c63e79a7c154" />
 
 # **Task 5: Identify Running Processes and Services**
@@ -90,6 +94,7 @@ htop                                # Enhanced interactive process monitoring to
 systemctl list-units --type=service # Lists all active system services managed by systemd
 sudo ss -tulnp                      # Displays listening ports and the services bound to them
 ```
+### Code-Output
 <img width="1058" height="740" alt="image" src="https://github.com/user-attachments/assets/bf188b1b-9405-41f1-8981-077128d0dbf1" />
 
 # **Task 6: Disable Unnecessary Services**
@@ -109,6 +114,7 @@ sudo systemctl stop <service>       # Stops the service immediately (temporary)
 sudo systemctl disable <service>    # Disables the service from starting at system boot
 sudo systemctl mask <service>       # Completely prevents the service from being started
 ```
+### Code-Output
 <img width="1058" height="740" alt="image" src="https://github.com/user-attachments/assets/ac50990d-1280-45ad-9a06-68af4c22cdfb" />
 
 # **Task 7: Document Best OS Hardening Practices**
