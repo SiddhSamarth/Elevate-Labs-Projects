@@ -261,29 +261,3 @@ sequenceDiagram
 * Digital signatures ≠ Encryption
 * Real-world security uses **hybrid cryptography**
 
----
-
-## 📁 Suggested Repository Structure
-
-```text
-crypto-lab/
-├── README.md
-├── notes/
-│   ├── symmetric-vs-asymmetric.md
-│   ├── hashing.md
-│   └── digital-signatures.md
-├── labs/
-│   ├── aes-encryption/
-│   ├── rsa-keys/
-│   └── hash-verification/
-└── diagrams/
-```
-
----
-
-## 🚀 Future Enhancements
-
-* TLS handshake analysis (Wireshark)
-* AES vs ChaCha20 benchmarking
-* MITM & replay attack demos
-* Automation using Bash/Python
