@@ -2,7 +2,7 @@
 
 # **GLOBAL VISUAL REFERENCES**
 
-![Image](https://www.terranovasecurity.com/sites/default/files/migration/scenario-3.png)
+<img width="1732" height="1500" alt="image" src="https://github.com/user-attachments/assets/fe3046f8-7be3-479d-90be-b9dcc35d4b94" />
 
 ![Image](https://getgophish.com/img/dashboard.min.svg)
 
