@@ -22,7 +22,7 @@ REST (Representational State Transfer) is a stateless architectural paradigm for
 
 ### **1.2 HTTP Methods and Their Operational Semantics**
 
-![Image](https://www.researchgate.net/publication/336852147/figure/tbl1/AS%3A818993254379520%401572274616168/HTTP-Method-and-CRUD-Operation.png)
+<img width="2290" height="1882" alt="image" src="https://github.com/user-attachments/assets/a1f5e9a4-7503-4b25-892a-6b5a7684d626" />
 
 ![Image](https://mdn.github.io/shared-assets/images/diagrams/http/messages/http-message-anatomy.svg)
 
@@ -149,7 +149,7 @@ Each corresponds to different operational meanings and security implications.
 
 ## **3. Testing Authentication Mechanisms**
 
-![Image](https://www.researchgate.net/publication/380295281/figure/fig5/AS%3A11431281240309448%401714714007925/Sequence-Diagram-for-JWT-Authorization.jpg)
+<img width="739" height="745" alt="image" src="https://github.com/user-attachments/assets/0f250122-f9d7-446d-b549-9087afe8b25e" />
 
 ![Image](https://docs.oracle.com/cd/E55956_01/doc.11123/oauth_guide/content/images/oauth/oauth_web_server_flow.png)
 
@@ -313,7 +313,7 @@ To test server-side validation, sanitization, and error-handling robustness.
 
 ## **7. Rate Limiting and Throttling Verification**
 
-![Image](https://www.tibco.com/content/dam/tibco/images/graphics/infographics/api-throttling-diagram.svg)
+<img width="820" height="446" alt="image" src="https://github.com/user-attachments/assets/131c9003-1584-43d4-bd06-1070ba948a8b" />
 
 ![Image](https://images.openai.com/static-rsc-3/OjHwOk2eQLL14wt77WQALBK_Y43FjiwnMXBwYzBI5n_Vk6ouoBSqFU83a428bVBpYnsSGNwQX_HPXftEl6XkXFV4XNfr_SRC2PPttWNlNDU?purpose=fullsize\&v=1)
 
