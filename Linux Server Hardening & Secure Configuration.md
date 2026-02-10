@@ -322,35 +322,3 @@ grep sudo /var/log/auth.log
 * Continuous monitoring capability
 * Production-grade security baseline
 
----
-
-#  **6. Recommended Repository Structure**
-
-If you want to implement this fully, use the following structure:
-
-```
-linux-hardening-guide/
-│
-├── README.md
-├── scripts/
-│   ├── harden.sh
-│   ├── firewall-setup.sh
-│   └── audit.sh
-│
-├── diagrams/
-│   ├── system-architecture.png
-│   ├── firewall-flow.png
-│   └── ssh-key-authentication.png
-│
-├── checklists/
-│   └── cis-linux-baseline-checklist.md
-│
-└── examples/
-    ├── sshd_config.example
-    ├── sudoers_minimal.example
-    └── iptables.example
-```
-
-
-
-and I will deliver everything, ready to upload.
