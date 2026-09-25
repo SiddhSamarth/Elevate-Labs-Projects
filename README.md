@@ -1,80 +1,84 @@
-# Elevate Labs Cybersecurity Practicals
+# Elevate Labs Cybersecurity Practical Laboratory Portfolio
 
-Welcome! This repository is my curated portfolio of hands-on cybersecurity labs that I completed during the **Elevate Labs** program. Through these exercises, I explored real-world security scenarios, applied systematic methodologies, used industry-standard tools, and documented outcomes with analysis and insights.
-
----
-
-## 🚀 What This Repository Is About
-
-I designed this project collection to reflect tangible progress in foundational cybersecurity skills. Each lab focuses on a distinct aspect of security — from network scanning to email forensics to vulnerability assessment and firewall hardening.
-
-By completing these modules, I strengthened my ability to think like both an analyst and a defender, using practical tools and documented workflows to solve problems and interpret findings.
+A comprehensive, hands-on portfolio of 20 cybersecurity laboratory investigations, technical reports, and forensics artifacts covering network reconnaissance, host hardening, traffic analysis, email forensics, vulnerability assessment, and web exploitation.
 
 ---
 
-## 📁 Projects Included
+## Overview
 
-Each file in this repo maps to a guided lab I worked on:
+This repository documents 20 practical laboratory exercises completed during the **Elevate Labs Cybersecurity Program**. Each module represents an applied, evidence-based investigation into core domains of defensive security, network administration, threat hunting, and system auditing. 
 
-| **Project / File**                                      | **What I Did / Learned**                                                                                              |
-| ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| **Network Scan (Day-1).md**                             | Performed network discovery and service enumeration using Nmap.                                                        |
-| **Email Phishing Analysis (Day-2).md**                  | Parsed a real phishing email, dissected email headers, and identified indicators of compromise (IOCs).                 |
-| **Vulnerability-Assessment (Day-3).md**                 | Ran vulnerability scans using tools like OpenVAS/Nessus and did manual validation with risk prioritization.          |
-| **Basic Firewall Configuration (Day-4).md**            | Configured firewall policies with UFW on Kali Linux, tested rule enforcement, and verified traffic behaviour.         |
-| **Networking & Wireshark Traffic Analysis.md**         | Captured and analysed network traffic using Wireshark.                                                                |
-| **Cryptography Fundamentals.md**                        | Studied core cryptographic concepts and principles.                                                                   |
-| **Password Security & Authentication Analysis.md**     | Examined password strength metrics, authentication methods, and security implications.                              |
-| **SQL Injection Practical Exploitation.md**            | Practised identifying and exploiting SQL injection vulnerabilities and documented mitigation techniques.             |
-| **Phishing Attack Simulation & Detection.md**          | Simulated phishing attacks and explored defensive detection strategies.                                              |
-| **Browser Extensions Evaluation.md**                   | Audited browser extensions for privacy and security risks.                                                           |
-| **Password Strength Evolution.md**                     | Analysed how password requirements and strength expectations have evolved over time.                                  |
-| **VPN Authenticity Verification.md**                   | Evaluated VPN services for authenticity, encryption practices, and real-world effectiveness.                          |
-| **Fundamentals.md**                                     | Covered essential core security principles that underpinned all labs.                                                 |
-| **sample1.eml**                                         | A real phishing email sample that I used for forensic analysis.                                                       |
+Rather than theoretical summaries, these modules document real hands-on workflows conducted in virtualized environments (primarily Kali Linux and vulnerable targets), utilizing industry-standard security tooling.
 
 ---
 
-## 🛠 Skills I Developed
+## Laboratory Index & Master Table of Contents
 
-Going through these labs helped me sharpen both analytical and technical abilities across multiple security domains:
+The 20 modules and project artifacts are organized across 5 core cybersecurity domains:
 
-### 🔍 Reconnaissance & Protocol Analysis
-* Used **Nmap** to discover hosts, enumerate open ports/services, and identify OS details.  
-* Analysed network traffic with **Wireshark** to understand protocol dynamics. :contentReference[oaicite:1]{index=1}
+### 1. Network Reconnaissance & Protocol Analysis
+| Lab Document | Tools Used | Key Focus & Methodology |
+| :--- | :--- | :--- |
+| **[Network Scan (Day-1.md)](./Network%20Scan%20(Day-1).md)** | Nmap | Host discovery, SYN stealth scanning (`-sS`), port enumeration, service version detection (`-sV`). |
+| **[Network Vulnerability Scanning.md](./Network%20Vulnerability%20Scanning%20.md)** | Nmap NSE, Nessus | Automated script scanning using Nmap Scripting Engine (NSE) to detect misconfigurations and unpatched services. |
+| **[Networking & Wireshark Traffic Analysis.md](./Networking%20&%20Wireshark%20Traffic%20Analysis.md)** | Wireshark, Tshark | Packet capture inspection, TCP 3-way handshake analysis, Berkeley Packet Filters (BPF), and protocol dissection. |
+| **[VPN Authenticity Verification.md](./VPN%20Authenticity%20Verification.md)** | OpenVPN, Wireshark | Tunnelling protocol evaluation, handshake encryption, IP/DNS leak testing, and cryptographic cipher verification. |
 
-### 🛡 Vulnerability Assessment
-* Ran automated scans using **OpenVAS/Nessus** and verified findings manually.  
-* Prioritised vulnerabilities using risk scoring to recommend mitigation steps. :contentReference[oaicite:2]{index=2}
+### 2. Threat Detection, Phishing & Digital Forensics
+| Lab Document | Tools Used | Key Focus & Methodology |
+| :--- | :--- | :--- |
+| **[Email Phishing Analysis (Day-2.md)](./Email%20Phishing%20Analysis%20(Day-2).md)** | Text Parsers, MXToolbox | Forensic deconstruction of raw RFC 822 email headers, tracking Received hops, and validating SPF/DKIM/DMARC records. |
+| **[sample1.eml](./sample1.eml)** | Raw MIME / EML | authoritative sample email artifact used for phishing header forensics and artifact extraction. |
+| **[Phishing Attack Simulation & Detection.md](./Phishing%20Attack%20Simulation%20&%20Detection.md)** | GoPhish / CLI Tools | Simulated social engineering scenarios, credential-harvesting landing pages, and email gateway filtering rules. |
+| **[Incident Response & Security Breach Simulation.md](./Incident%20Response%20&%20Security%20Breach%20Simulation.md)** | Netstat, Syslog, Bash | SANS PICERL framework simulation: rogue process identification, network socket isolation, and containment playbooks. |
+| **[Log Monitoring & Analysis.md](./Log%20Monitoring%20&%20Analysis.md)** | Linux Syslog, Grep, Awk | Auditing `/var/log/auth.log`, detecting failed SSH login spikes, and parsing HTTP access logs for anomaly signatures. |
 
-### 📧 Threat Detection & Forensics
-* Parsed phishing email headers to trace sources and exposure.  
-* Identified Indicators of Compromise (IOCs) from real samples. :contentReference[oaicite:3]{index=3}
+### 3. Defensive Security, Hardening & Cryptography
+| Lab Document | Tools Used | Key Focus & Methodology |
+| :--- | :--- | :--- |
+| **[Basic Firewall Configuration (Day-4.md)](./Basic%20Firewall%20Configuration%20(Day-4).md)** | UFW, iptables | Host firewall rule construction, default-deny ingress policies, port restriction, and connection rate limiting. |
+| **[Linux Server Hardening & Secure Configuration.md](./Linux%20Server%20Hardening%20&%20Secure%20Configuration.md)** | OpenSSH, Sudoers | `sshd_config` auditing (PermitRootLogin no, PubkeyAuthentication), Sudoers privilege audits, and permission lockouts. |
+| **[Cryptography Fundamentals.md](./Cryptography%20Fundamentals.md)** | OpenSSL, Hashcat | Symmetric/asymmetric encryption principles, SHA-256 integrity hashing, and PKI digital certificate structures. |
+| **[Password Security & Authentication Analysis.md](./Password%20Security%20&%20Authentication%20Analysis.md)** | John the Ripper, Hydra | Password hash cracking analysis, dictionary attack demonstrations, and brute-force resistance evaluations. |
+| **[Password Strength Evolution.md](./Password%20Strength%20Evolution.md)** | Entropy Evaluators | Comparative analysis of entropy requirements, dictionary defenses, and modern NIST SP 800-63B guidelines. |
 
-### 🔐 Defensive Security & Hardening
-* Hardened hosts with **UFW** firewall rules and verified traffic handling.  
-* Explored password security practices and authentication mechanisms. :contentReference[oaicite:4]{index=4}
+### 4. Web Application & API Security
+| Lab Document | Tools Used | Key Focus & Methodology |
+| :--- | :--- | :--- |
+| **[SQL Injection Practical Exploitation.md](./SQL%20Injection%20Practical%20Exploitation.md)** | DVWA, SQLMap | In-band, boolean-based, and union-based SQL injection exploitation, database dumping, and parameterized query remediation. |
+| **[Secure API Testing & Authorization Validation.md](./Secure%20API%20Testing%20&%20Authorization%20Validation.md)** | Postman, cURL | REST API endpoint assessment, Broken Object Level Authorization (BOLA/IDOR) testing, and JWT token validation. |
+| **[Browser Extensions Evaluation.md](./Browser%20Extensions%20Evaluation.md)** | Manifest Auditing | Static security audit of browser extension permissions, content script injection, and client-side data leakage. |
 
-### 🔎 Application Security Awareness
-* Carried out SQL Injection testing and documented mitigation strategies.  
-* Audited browser extensions and evaluated VPN service security. :contentReference[oaicite:5]{index=5}
+### 5. Vulnerability Assessment & Foundational Principles
+| Lab Document | Tools Used | Key Focus & Methodology |
+| :--- | :--- | :--- |
+| **[Vulnerability-Assessment (Day-3.md)](./Vulnerability-Assessment%20(Day-3).md)** | OpenVAS, Nessus | Automated vulnerability scanning, host discovery, CVE correlation, and remediation advisory generation. |
+| **[Vulnerability Assessment & Risk Prioritization.md](./Vulnerability%20Assessment%20&%20Risk%20Prioritization.md)** | CVSS v3.1 Matrix | Prioritizing remediation backlogs using CVSS base, temporal, and environmental scores against business impact. |
+| **[Fundamentals.md](./Fundamentals.md)** | Conceptual Reference | Core security axioms: CIA triad, Defense-in-Depth, Principle of Least Privilege, and attack surface reduction. |
 
 ---
 
-## 📌 Tools & Technologies I Used
+## Core Technologies & Tools Mastered
 
-* **Operating System:** Kali Linux  
-* **Network Scanning / Traffic Analysis:** Nmap, Wireshark  
-* **Vulnerability Assessment:** OpenVAS, Nessus  
-* **Firewall Hardening:** UFW (Uncomplicated Firewall)  
-* **Email / Phishing Forensics:** CLI header tools, text parsing  
-* **Documentation:** Markdown enriched with screenshots and command snippets :contentReference[oaicite:6]{index=6}
+* **Operating System:** Kali Linux, Ubuntu Server, Debian
+* **Network & Scanning:** Nmap, Wireshark, Tshark, OpenVPN, cURL
+* **Vulnerability Assessment:** Tenable Nessus, Greenbone OpenVAS, CVSS v3.1
+* **Host & Firewall Defense:** UFW (Uncomplicated Firewall), iptables, OpenSSH hardening
+* **Application Security:** SQLMap, DVWA (Damn Vulnerable Web App), Postman
+* **Digital Forensics:** RFC 822 Email Parsers, Linux Syslog triage, OpenSSL
 
 ---
 
-## 🧭 How To Use This Repo
+## Project Status
 
-1. **Clone this repository**
-   ```bash
-   git clone https://github.com/SiddhSamarth/Elevate-Labs-Projects.git
-   cd Elevate-Labs-Projects
+* **Status:** Complete Laboratory & Documentation Suite
+* **Maintenance:** Archived reference portfolio representing foundational hands-on training.
+
+---
+
+## Author & Links
+
+* **Author:** Siddh Samarth
+* **GitHub:** [@SiddhSamarth](https://github.com/SiddhSamarth)
+* **Portfolio:** [siddhsamarth.in](https://siddhsamarth.in)
+* **LinkedIn:** [samarthsiddh](https://www.linkedin.com/in/siddhsamarth/)
