@@ -1,14 +1,12 @@
 # Elevate Labs Cybersecurity Practical Laboratory Portfolio
 
-A comprehensive, hands-on portfolio of 20 cybersecurity laboratory investigations, technical reports, and forensics artifacts covering network reconnaissance, host hardening, traffic analysis, email forensics, vulnerability assessment, and web exploitation.
+Documentation and lab notes for 20 hands-on security exercises completed during the Elevate Labs training program. The exercises cover network reconnaissance, host hardening, traffic analysis, email header forensics, vulnerability assessment, and web exploitation in virtualized lab environments.
 
 ---
 
-## Overview
+## Program & Exercise Provenance
 
-This repository documents 20 practical laboratory exercises completed during the **Elevate Labs Cybersecurity Program**. Each module represents an applied, evidence-based investigation into core domains of defensive security, network administration, threat hunting, and system auditing. 
-
-Rather than theoretical summaries, these modules document real hands-on workflows conducted in virtualized environments (primarily Kali Linux and vulnerable targets), utilizing industry-standard security tooling.
+These modules document laboratory coursework and practical exercises completed as part of the Elevate Labs training curriculum. Exercises utilize open-source security tools (Nmap, Wireshark, UFW, OpenSSL) against simulated targets. Referenced walkthrough materials and screenshots in Day-3 are attributed to their original source ([@laaaaaarry](https://github.com/laaaaaarry/Vulnerability-Management)).
 
 ---
 
@@ -58,7 +56,7 @@ The 20 modules and project artifacts are organized across 5 core cybersecurity d
 
 ---
 
-## Core Technologies & Tools Mastered
+## Technologies & Tools Used
 
 * **Operating System:** Kali Linux, Ubuntu Server, Debian
 * **Network & Scanning:** Nmap, Wireshark, Tshark, OpenVPN, cURL
