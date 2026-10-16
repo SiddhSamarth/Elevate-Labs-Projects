@@ -2,7 +2,7 @@
 
 ##  Overview
 
-This report presents a comprehensive manual investigation of a suspected phishing email named `sample1.eml`. The analysis was carried out using **Sublime Text Editor** on **Kali Linux 2025.2**, focusing on standard phishing indicators across email headers, content, and structure. The sample impersonates **Chase Bank** and attempts to deceive the recipient using urgency and domain obfuscation.
+This report documents a manual review of the repository's sample1.eml training artifact. The message purports to be from Chase and contains multiple suspicious indicators. The raw-header artifact also contains an internal inconsistency between the visible From field and its recorded authentication results; this report therefore separates observed fields from interpretation.
 
 ---
 
@@ -39,8 +39,8 @@ The mismatch between the visible sender and the reply destination is a meaningfu
 ### 2. 🔗 Malicious Link Behavior
 
 - **Displayed Text:** “Reactivate Your Account”
-- **Actual Link:** `https://dsgo.to/CQEC...` (a URL shortener, not chase.com)
-- **Tactic:** Uses a shortened, unbranded URL to hide its true destination
+- **Observed link:** a shortened dsgo.to URL (the destination was not verified in this report).
+- **Interpretation:** the shortener obscures the final destination and warrants safe validation; use of a URL shortener alone is not proof of maliciousness.
 
 ✅ For further safety checks, use tools like [VirusTotal](https://www.virustotal.com) or [URLScan.io](https://urlscan.io) to analyze suspicious URLs without clicking them.
 
