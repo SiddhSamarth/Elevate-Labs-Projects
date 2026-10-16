@@ -10,33 +10,31 @@ This report presents a comprehensive manual investigation of a suspected phishin
 
 | Attribute                | Observed Value                                             | Assessment         |
 |--------------------------|------------------------------------------------------------|--------------------|
-| **From Address**         | `alerts@chase.com`                                          | ❌ Spoofed Identity |
-| **Reply-To Address**     | `kellyellin426@proton.me`                                   | ❌ Mismatch         |
+| **From Address**         | `alerts@chase.com`                                          | ⚠️ Visible identity is not authenticated by this field alone |
+| **Reply-To Address**     | `kellyellin426@proton.me`                                   | ⚠️ Suspicious mismatch; corroborate |
 | **Return-Path**          | `kellyellin426@proton.me`                                   | ❌ Suspicious       |
 | **Subject Line**         | `Your Bank Account has been blocked due to unusual activities` | ❌ Threat-Based     |
 | **Tone of Email**        | Alarmist, urgent, action-triggering                        | ❌ Phishing Style   |
 | **Embedded Links**       | `https://dsgo.to/CQEC...`                                   | ❌ Obfuscated URL   |
 | **Displayed Link Text**  | `Reactivate Your Account`                                   | ❌ Deceptive Intent |
 | **Attachments**          | _None detected_                                             | ✅ No Immediate Threat |
-| **Header Anomalies**     | DKIM timeout, mismatched infrastructure                    | ❌ Spoof Evidence   |
+| **Header Anomalies**     | DKIM timeout; Authentication-Results says header.from=protonmail.com while visible From is chase.com | ⚠️ Internally inconsistent artifact |
 | **Grammar and Spelling** | "tempory", improper capitalization                         | ❌ Red Flag         |
 
 ---
 
 ## 🔍 Key Findings
 
-### 1. 🎭 Spoofed Identity
+### 1. Sender identity and reply routing
 
-The email **pretends** to be from `alerts@chase.com`, but the true sender address and infrastructure reveal otherwise:
-- **Reply-To:** `kellyellin426@proton.me`
-- **Return-Path:** Same suspicious ProtonMail address
-- **Relay Servers:** Hosted on `protonmail.ch` instead of Chase’s verified email servers
+The sample contains these directly observed fields:
 
-![image](https://github.com/user-attachments/assets/00c435ee-2ee6-4d81-9f38-4d3bab7126bf)
+- Visible From: alerts@chase.com
+- Reply-To: kellyellin426@proton.me
+- Return-Path: kellyellin426@proton.me
+- The relay-related fields reference Proton infrastructure.
 
-> 🧠 Spoofed sender domains can be used to deceive users into trusting malicious messages, especially if the display name appears familiar.
-
----
+The mismatch between the visible sender and the reply destination is a meaningful warning sign, particularly alongside the account-suspension theme. However, a From / Reply-To mismatch is not, by itself, proof of spoofing or malicious intent. State what the artifact shows and retain the original message for further validation.
 
 ### 2. 🔗 Malicious Link Behavior
 
@@ -48,18 +46,20 @@ The email **pretends** to be from `alerts@chase.com`, but the true sender addres
 
 ---
 
-### 3. ✉️ Header Discrepancies
+### 3. Authentication results and raw-header consistency
 
-Reviewing the raw headers via Sublime revealed:
-- **SPF** passed, but **DKIM** returned a timeout — the email's authenticity remains unverified!           ![image](https://github.com/user-attachments/assets/e0f732fb-1488-4646-80fe-a3e6600b5db1)
+The sample's raw headers record:
 
-- **SMTP Routing:** Relayed via ProtonMail servers, not Chase infrastructure.                                ![image](https://github.com/user-attachments/assets/67dbb23c-b8cc-4010-b252-2eab98d6a2bd)
+- SPF pass for smtp.mailfrom=protonmail.com.
+- DKIM timeout with header.d=protonmail.com.
+- DMARC pass with header.from=protonmail.com.
+- The visible message From field is alerts@chase.com.
 
-- **Mismatch:** `From`, `Reply-To`, and `Return-Path` all show inconsistencies
+A DKIM timeout is **inconclusive**, not a DKIM failure. An SPF pass establishes that the evaluated sending host was permitted for the recorded envelope-sender domain; it does not authenticate the visible From domain by itself.
 
-> These header mismatches are clear signs of spoofing and identity concealment.
+The artifact is internally inconsistent: the recorded DMARC result names protonmail.com as the header-from domain, while the visible From field is alerts@chase.com. Preserve this discrepancy as a finding. Do not silently treat the authentication result as a valid DMARC pass for the visible From domain. The sample may have been edited, constructed, or had relevant headers altered; available evidence does not establish which explanation applies.
 
----
+For a production investigation, validate the receiving system's trusted Authentication-Results header, the full Received chain, SPF/DKIM/DMARC alignment, and message trace where available.
 
 ### 4. ⚠️ Psychological Manipulation
 
@@ -94,23 +94,34 @@ Phishing emails often contain such language issues because they are either auto-
 
 ---
 
-## ✅ Final Verdict
+## Final Assessment
 
-This email exhibits **multiple classic phishing indicators**, including:
+### Observations
 
-- Spoofed and mismatched sender addresses
-- Obfuscated and suspicious links
-- Use of fear-based language
-- Poor grammar and formatting
-- Suspicious routing paths in headers
+- The visible sender purports to be alerts@chase.com, while Reply-To and Return-Path reference a Proton address.
+- The message uses an urgent account-suspension theme and a shortened URL whose final destination is not established in this report.
+- The raw header's authentication fields contain an inconsistency: DMARC records header.from=protonmail.com, but the visible From field is alerts@chase.com.
+- The DKIM status is a timeout, which is inconclusive.
 
-> **Classification**: 🚨 Confirmed High-Risk Phishing Attempt  
-> **Recommended Action**:  
-> - Block sender and domain at the gateway  
-> - Report the email to your internal SOC or IT security team  
-> - Educate the recipient on phishing awareness  
+### Disposition
 
----
+**Classification: suspicious email; likely phishing based on the combined indicators, but the malicious destination and final delivery/authentication context have not been independently verified by this report.** Do not call the sample “confirmed phishing” solely from a DKIM timeout or sender mismatch.
 
+Recommended handling for a real recipient:
 
+1. Preserve the original EML and calculate a SHA-256 hash.
+2. Report the message through the organisation's approved email-security process.
+3. Do not click or open the shortened URL directly. Expand and inspect it only with an approved safe-analysis workflow; record redirect evidence and the timestamp.
+4. Correlate mail gateway verdicts, message trace and recipient endpoint telemetry before concluding whether a user interacted with the message or whether compromise occurred.
+5. Block a URL, sender or domain only after appropriate validation and according to the organisation's process.
 
+### Limitations
+
+This is a static lab sample review. It does not establish that the URL was malicious, that the message reached a real mailbox, that a user clicked it, or that credentials or systems were compromised. Any stronger conclusion must cite the additional evidence supporting it.
+
+### References
+
+- [NIST SP 800-177 Rev. 1 — Trustworthy Email](https://csrc.nist.gov/pubs/sp/800/177/r1/final)
+- [RFC 7208 — Sender Policy Framework (SPF)](https://www.rfc-editor.org/rfc/rfc7208)
+- [RFC 6376 — DomainKeys Identified Mail (DKIM)](https://www.rfc-editor.org/rfc/rfc6376)
+- [RFC 7489 — Domain-based Message Authentication, Reporting, and Conformance (DMARC)](https://www.rfc-editor.org/rfc/rfc7489)
