@@ -1,6 +1,12 @@
 [
   {
-    "Accounts": ["Administrator", "admin", "helpdesk", "jdoe", "svc_backup"],
+    "Accounts": [
+      "Administrator",
+      "admin",
+      "helpdesk",
+      "jdoe",
+      "svc_backup"
+    ],
     "Computer": "WIN-LAB-01",
     "DetectionName": "Repeated Windows authentication failures",
     "DistinctAccounts": 5,
@@ -13,7 +19,9 @@
     "WindowEnd": "2026-10-10T10:10:00Z"
   },
   {
-    "Accounts": ["svc_backup"],
+    "Accounts": [
+      "svc_backup"
+    ],
     "Computer": "WIN-LAB-02",
     "DetectionName": "Repeated Windows authentication failures",
     "DistinctAccounts": 1,
