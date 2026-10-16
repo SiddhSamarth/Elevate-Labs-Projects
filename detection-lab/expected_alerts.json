@@ -1,0 +1,28 @@
+[
+  {
+    "Accounts": ["Administrator", "admin", "helpdesk", "jdoe", "svc_backup"],
+    "Computer": "WIN-LAB-01",
+    "DetectionName": "Repeated Windows authentication failures",
+    "DistinctAccounts": 5,
+    "FailureCount": 5,
+    "FirstSeen": "2026-10-10T10:01:00Z",
+    "IpAddress": "198.51.100.25",
+    "LastSeen": "2026-10-10T10:05:00Z",
+    "TimeWindow": "2026-10-10T10:00:00Z",
+    "TriageNote": "Potential password guessing, password spray, or misconfigured client; not proof of compromise",
+    "WindowEnd": "2026-10-10T10:10:00Z"
+  },
+  {
+    "Accounts": ["svc_backup"],
+    "Computer": "WIN-LAB-02",
+    "DetectionName": "Repeated Windows authentication failures",
+    "DistinctAccounts": 1,
+    "FailureCount": 5,
+    "FirstSeen": "2026-10-10T11:01:00Z",
+    "IpAddress": "203.0.113.77",
+    "LastSeen": "2026-10-10T11:05:00Z",
+    "TimeWindow": "2026-10-10T11:00:00Z",
+    "TriageNote": "Potential password guessing, password spray, or misconfigured client; not proof of compromise",
+    "WindowEnd": "2026-10-10T11:10:00Z"
+  }
+]
