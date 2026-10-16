@@ -1,0 +1,22 @@
+// Detection: repeated Windows authentication failures from one source.
+// Lab starting point: validate field names and baseline before production use.
+let Threshold = 5;
+let Window = 10m;
+SecurityEvent
+| where EventID == 4625
+| where isnotempty(IpAddress)
+| where IpAddress !in ("-", "::1", "127.0.0.1")
+| summarize
+    FailureCount = count(),
+    DistinctAccounts = dcount(Account),
+    Accounts = make_set(Account, 20),
+    FirstSeen = min(TimeGenerated),
+    LastSeen = max(TimeGenerated)
+    by IpAddress, Computer, TimeWindow = bin(TimeGenerated, Window)
+| where FailureCount >= Threshold
+| extend
+    DetectionName = "Repeated Windows authentication failures",
+    TriageNote = "Potential password guessing, password spray, or misconfigured client; not proof of compromise"
+| project TimeWindow, FirstSeen, LastSeen, IpAddress, Computer,
+          FailureCount, DistinctAccounts, Accounts, DetectionName, TriageNote
+| order by FailureCount desc, FirstSeen asc
