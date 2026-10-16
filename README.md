@@ -10,6 +10,12 @@ These modules document laboratory coursework and practical exercises completed a
 
 ---
 
+## Reproducible Detection Exercise
+
+A self-contained, tested example is available in [detection-lab](./detection-lab/README.md). It includes synthetic Windows authentication events, a Python detector, a Microsoft Sentinel KQL starting point, expected output and unit tests. The events use documentation-only IP ranges and the alert is explicitly a triage signal, not proof of compromise.
+
+See also the reviewed [phishing analysis](./Email%20Phishing%20Analysis%20(Day-2).md), [vulnerability assessment](./Vulnerability-Assessment%20(Day-3).md) and [incident-response simulation](./Incident%20Response%20%26%20Security%20Breach%20Simulation.md).
+
 ## Laboratory Index & Master Table of Contents
 
 The 20 modules and project artifacts are organized across 5 core cybersecurity domains:
@@ -26,7 +32,7 @@ The 20 modules and project artifacts are organized across 5 core cybersecurity d
 | Lab Document | Tools Used | Key Focus & Methodology |
 | :--- | :--- | :--- |
 | **[Email Phishing Analysis (Day-2.md)](./Email%20Phishing%20Analysis%20(Day-2).md)** | Text Parsers, MXToolbox | Forensic deconstruction of raw RFC 822 email headers, tracking Received hops, and validating SPF/DKIM/DMARC records. |
-| **[sample1.eml](./sample1.eml)** | Raw MIME / EML | authoritative sample email artifact used for phishing header forensics and artifact extraction. |
+| **[sample1.eml](./sample1.eml)** | Raw MIME / EML | raw lab email sample for static header forensics and artifact extraction. |
 | **[Phishing Attack Simulation & Detection.md](./Phishing%20Attack%20Simulation%20&%20Detection.md)** | GoPhish / CLI Tools | Simulated social engineering scenarios, credential-harvesting landing pages, and email gateway filtering rules. |
 | **[Incident Response & Security Breach Simulation.md](./Incident%20Response%20&%20Security%20Breach%20Simulation.md)** | Netstat, Syslog, Bash | SANS PICERL framework simulation: rogue process identification, network socket isolation, and containment playbooks. |
 | **[Log Monitoring & Analysis.md](./Log%20Monitoring%20&%20Analysis.md)** | Linux Syslog, Grep, Awk | Auditing `/var/log/auth.log`, detecting failed SSH login spikes, and parsing HTTP access logs for anomaly signatures. |
@@ -69,7 +75,7 @@ The 20 modules and project artifacts are organized across 5 core cybersecurity d
 
 ## Project Status
 
-* **Status:** Complete Laboratory & Documentation Suite
+* **Status:** Training laboratory portfolio; selected exercises are reproducible, while scan metrics remain reported values unless backed by raw exports.
 * **Maintenance:** Archived reference portfolio representing foundational hands-on training.
 
 ---
